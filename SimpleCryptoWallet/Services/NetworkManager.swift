@@ -15,7 +15,6 @@ class NetworkManager {
     private init() {}
     var cryptoValuesArray = CryptoValues.allCases.map { $0.rawValue }
     var coinsArray = [Coin]()
-    var isFetchFinished = false
     
     func fetchData(url: String, completion: @escaping (_ coin: Coin) -> Void) {
         guard let url = URL(string: url) else { return }

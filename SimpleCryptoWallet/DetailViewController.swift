@@ -27,7 +27,7 @@ class DetailViewController: UIViewController {
         view.addSubview(infoLabel)
         setConstraints()
     }
-    
+
     func setConstraints() {
         NSLayoutConstraint.activate([
             infoLabel.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),

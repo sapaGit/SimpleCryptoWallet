@@ -14,29 +14,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
-            window = UIWindow(frame: UIScreen.main.bounds)
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let isLoggedIn = UserDefaults.standard.value(forKey: "loggedIn") as? Bool ?? false
+        
+        if isLoggedIn {
+        
+        let rootNC = UINavigationController(rootViewController: TableViewController())
+        
+        window?.rootViewController = rootNC
+            
+        } else {
             let rootNC = UINavigationController(rootViewController: LoginViewController())
             window?.rootViewController = rootNC
+        }
             window?.makeKeyAndVisible()
 
             return true
         }
-    func switchViewControllers() {
-        
-        // switch root view controllers
-        let navigationController = UINavigationController(rootViewController: TableViewController())
-        self.window?.rootViewController = navigationController
-        
-    }
-     
-    func switchBack() {
-        
-        // switch back to view controller 1
-        let rootNC = UINavigationController(rootViewController: LoginViewController())
-        self.window?.rootViewController = rootNC
-    }
-
-
 }
 
 extension UIWindow {

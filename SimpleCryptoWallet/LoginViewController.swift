@@ -73,15 +73,14 @@ class LoginViewController: UIViewController {
     
     
     @objc func logInTapped(sender: UIButton) {
-        
-        let loginVC = TableViewController()
+    
+        let tableVC = TableViewController()
         guard let window = self.view.window else {
-        return
+            return
         }
-        window.switchRootViewController(loginVC)
-//        let tableViewController = TableViewController()
-//        self.navigationController?.pushViewController(tableViewController, animated: true)
-//
+        DataManager.shared.isLoggedIn = true
+        UserDefaults.standard.set(DataManager.shared.isLoggedIn, forKey: "loggedIn")
+        window.switchRootViewController(tableVC)
     }
 }
 

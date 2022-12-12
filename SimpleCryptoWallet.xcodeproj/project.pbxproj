@@ -18,6 +18,7 @@
 		A0B9C04E294495CC00A184E5 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B9C04D294495CC00A184E5 /* DetailViewController.swift */; };
 		A0B9C050294497FC00A184E5 /* CoinTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B9C04F294497FC00A184E5 /* CoinTableViewCell.swift */; };
 		A0B9C0522944982D00A184E5 /* CryptoValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B9C0512944982D00A184E5 /* CryptoValues.swift */; };
+		A0E677BE2946384C009C08E2 /* extension + UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0E677BD2946384C009C08E2 /* extension + UserDefaults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		A0B9C04D294495CC00A184E5 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		A0B9C04F294497FC00A184E5 /* CoinTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinTableViewCell.swift; sourceTree = "<group>"; };
 		A0B9C0512944982D00A184E5 /* CryptoValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoValues.swift; sourceTree = "<group>"; };
+		A0E677BD2946384C009C08E2 /* extension + UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "extension + UserDefaults.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				A0B9C0442944943200A184E5 /* DataManager.swift */,
 				A0B9C0462944948400A184E5 /* ImageManager.swift */,
 				A0B9C042294493F600A184E5 /* NetworkManager.swift */,
+				A0E677BD2946384C009C08E2 /* extension + UserDefaults.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -191,6 +194,7 @@
 				A0B9C050294497FC00A184E5 /* CoinTableViewCell.swift in Sources */,
 				A0B9C0472944948400A184E5 /* ImageManager.swift in Sources */,
 				A0B9C0452944943200A184E5 /* DataManager.swift in Sources */,
+				A0E677BE2946384C009C08E2 /* extension + UserDefaults.swift in Sources */,
 				A0B9C02929448B8B00A184E5 /* AppDelegate.swift in Sources */,
 				A0B9C03D294491E100A184E5 /* TableViewController.swift in Sources */,
 			);

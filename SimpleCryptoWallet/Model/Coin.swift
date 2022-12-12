@@ -9,13 +9,13 @@ import Foundation
 
 
 // MARK: - Coin
-struct Coin: Codable {
+struct Coin: Codable, Hashable {
 
     let data: DataClass
 }
 
 // MARK: - DataClass
-struct DataClass: Codable {
+struct DataClass: Codable, Hashable {
     let id: String
     let serialID: Int
     let symbol, name, slug: String
