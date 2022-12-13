@@ -70,24 +70,34 @@ class LoginViewController: UIViewController {
         view.addSubview(passwordTextField)
         view.addSubview(logInButton)
     }
+    func showAlert() {
+            let alert = UIAlertController(title: "Error", message: "Use more than 4 symbols at both TF", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+            self.present(alert, animated: true)
+        }
     
     
     @objc func logInTapped(sender: UIButton) {
-    
-        let tableVC = TableViewController()
-        guard let window = self.view.window else {
-            return
+        
+        if loginTextField.text?.count ?? 1 < 5 && passwordTextField.text?.count ?? 1 < 5 {
+            showAlert()
+        } else {
+            let tableVC = TableViewController()
+            guard let window = self.view.window else {
+                    return
+                }
+            DataManager.shared.isLoggedIn = true
+            UserDefaults.standard.set(DataManager.shared.isLoggedIn, forKey: "loggedIn")
+            window.switchRootViewController(tableVC)
+            
         }
-        DataManager.shared.isLoggedIn = true
-        UserDefaults.standard.set(DataManager.shared.isLoggedIn, forKey: "loggedIn")
-        window.switchRootViewController(tableVC)
     }
 }
 
 extension LoginViewController {
     func setConstraints() {
         NSLayoutConstraint.activate([
-            loginTextField.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
+            loginTextField.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -150),
             loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             loginTextField.widthAnchor.constraint(equalTo: view.widthAnchor, multiplier: 0.7),
             

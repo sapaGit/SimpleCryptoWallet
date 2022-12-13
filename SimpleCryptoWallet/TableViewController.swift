@@ -8,17 +8,25 @@
 import UIKit
 
 class TableViewController: UITableViewController {
-    private var coins: [Coin] = Array(UserDefaults.standard.coins)
+    var indicator = UIActivityIndicatorView()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.rowHeight = 100
+    
+        tableView.rowHeight = 90
         setupNavigationBar()
-        NetworkManager.shared.asyncGroup(tableView: tableView)
+        activityIndicator()
+        indicator.startAnimating()
+        NetworkManager.shared.asyncGroup(completion: {
+            self.indicator.stopAnimating()
+            self.tableView.reloadData()
+        })
     }
 
     private func goToDetailVC(sender: Any?) {
-        self.navigationController?.pushViewController(DetailViewController(), animated: true)
+        let controller = DetailViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
+        controller.coin = sender as? Coin
     }
     
     private func setupNavigationBar() {
@@ -27,14 +35,14 @@ class TableViewController: UITableViewController {
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
             navBarAppearance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
-            navBarAppearance.backgroundColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+            navBarAppearance.backgroundColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
             navigationController?.navigationBar.standardAppearance = navBarAppearance
             navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
             let logOutButtonItem = UIBarButtonItem(title: "Log out",
                                                       style: .plain,
                                                       target: self,
                                                       action: #selector(logOutTapped))
-            let sortButtonItem = UIBarButtonItem(title: "🔃",
+            let sortButtonItem = UIBarButtonItem(title: "Sort by change",
                                                       style: .plain,
                                                       target: self,
                                                       action: #selector(sortTapped))
@@ -42,6 +50,14 @@ class TableViewController: UITableViewController {
             self.navigationItem.rightBarButtonItem  = logOutButtonItem
             }
         }
+    
+    private func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+                indicator.style = UIActivityIndicatorView.Style.large
+                indicator.color = .systemBlue
+                self.view.addSubview(indicator)
+        }
+    
     @objc func logOutTapped(_ sender: Any){
         let loginVC = LoginViewController()
         guard let window = self.view.window else {
@@ -54,9 +70,7 @@ class TableViewController: UITableViewController {
     }
     
     @objc func sortTapped(_ sender: Any){
-        let sortedArray = NetworkManager.shared.coinsArray.sorted { $0.data.name < $1.data.name
-        }
-        NetworkManager.shared.coinsArray = sortedArray
+        NetworkManager.shared.coinsArray = NetworkManager.shared.coinsArray.reversed()
         tableView.reloadData()
     }
 
@@ -67,7 +81,7 @@ class TableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = CoinTableViewCell()
         let coin = NetworkManager.shared.coinsArray[indexPath.row]
-        cell.configure(with: coin)
+        cell.configure(with: coin)  
         
         return cell
     }

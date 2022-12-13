@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import UIKit
 
 class NetworkManager {
     
@@ -37,7 +36,7 @@ class NetworkManager {
         }.resume()
     }
     
-    func asyncGroup(tableView: UITableView) {
+    func asyncGroup(completion: @escaping () -> Void) {
         let aGroup = DispatchGroup()
         for coinString in cryptoValuesArray {
             aGroup.enter()
@@ -47,8 +46,10 @@ class NetworkManager {
             }
         }
         aGroup.notify(queue: .main) {
-            tableView.reloadData()
-            print("Complete")
+            let sortedArray = self.coinsArray.sorted { $0.data.marketData.percentChangeUsdLast24Hours < $1.data.marketData.percentChangeUsdLast24Hours
+            }
+            self.coinsArray = sortedArray
+            completion()
         }
     }
 }

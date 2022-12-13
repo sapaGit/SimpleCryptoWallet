@@ -9,21 +9,43 @@ import Foundation
 
 
 // MARK: - Coin
-struct Coin: Codable, Hashable {
-
+struct Coin: Codable {
     let data: DataClass
 }
 
 // MARK: - DataClass
-struct DataClass: Codable, Hashable {
+struct DataClass: Codable {
     let id: String
     let serialID: Int
-    let symbol, name, slug: String
+    let symbol: String
+    let name: String
+    let slug: String
+    let marketData: MarketData
     
     enum CodingKeys: String, CodingKey {
         case id
         case serialID = "serial_id"
         case symbol, name, slug
+        case marketData = "market_data"
+    }
+}
+struct MarketData: Codable {
+    let priceUsd: Double
+    let volumeLast24Hours: Double
+    let realVolumeLast24Hours: Double
+    let volumeLast24HoursOverstatementMultiple: Double
+    let percentChangeUsdLast24Hours: Double
+    let percentChangeBtcLast24Hours: Double
+    let percentChangeEthLast24Hours: Double
+    
+    enum CodingKeys: String, CodingKey {
+        case priceUsd = "price_usd"
+        case volumeLast24Hours = "volume_last_24_hours"
+        case realVolumeLast24Hours = "real_volume_last_24_hours"
+        case volumeLast24HoursOverstatementMultiple = "volume_last_24_hours_overstatement_multiple"
+        case percentChangeUsdLast24Hours = "percent_change_usd_last_24_hours"
+        case percentChangeBtcLast24Hours = "percent_change_btc_last_24_hours"
+        case percentChangeEthLast24Hours = "percent_change_eth_last_24_hours"
     }
 }
 

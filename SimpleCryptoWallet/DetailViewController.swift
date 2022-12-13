@@ -9,6 +9,8 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
+    var coin: Coin!
+    
     var infoLabel: UILabel = {
             let label = UILabel()
             label.translatesAutoresizingMaskIntoConstraints = false
@@ -16,7 +18,6 @@ class DetailViewController: UIViewController {
             label.textAlignment = .left
             label.numberOfLines = 0
             label.font = UIFont(name: "Helvetica-Bold", size: 22)
-            label.text = " akl ska las skmalsk mask malm slams a;sm ;sam asm; ems;dl;dm"
             return label
         }()
     
@@ -24,6 +25,13 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
         navigationItem.title = "Detail info"
+        infoLabel.text = """
+        name: \(coin.data.name)
+        symbol: \(coin.data.symbol)
+        slug: \(coin.data.slug)
+        price: \(round(coin.data.marketData.priceUsd*1000)/1000) USD
+        change per day: \(round(coin.data.marketData.percentChangeUsdLast24Hours*100)/100) %
+        """
         view.addSubview(infoLabel)
         setConstraints()
     }
