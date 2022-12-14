@@ -9,16 +9,16 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
-
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         let isLoggedIn = UserDefaults.standard.value(forKey: "loggedIn") as? Bool ?? false
         
         if isLoggedIn {
-        
+            
             let rootNC = UINavigationController(rootViewController: TableViewController())
             window?.rootViewController = rootNC
             
@@ -26,10 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let rootNC = UINavigationController(rootViewController: LoginViewController())
             window?.rootViewController = rootNC
         }
-            window?.makeKeyAndVisible()
-
-            return true
-        }
+        window?.makeKeyAndVisible()
+        
+        return true
+    }
 }
 
 extension UIWindow {

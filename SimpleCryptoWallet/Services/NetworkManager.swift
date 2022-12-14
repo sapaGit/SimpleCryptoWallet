@@ -13,7 +13,6 @@ class NetworkManager {
     
     private init() {}
     var cryptoValuesArray = CryptoValues.allCases.map { $0.rawValue }
-    var coinsArray = [Coin]()
     
     func fetchData(url: String, completion: @escaping (_ coin: Coin) -> Void) {
         guard let url = URL(string: url) else { return }
@@ -36,20 +35,18 @@ class NetworkManager {
         }.resume()
     }
     
-    func asyncGroup(completion: @escaping () -> Void) {
+    func asyncGroup(completion: @escaping (_ coins: [Coin]) -> Void) {
         let aGroup = DispatchGroup()
+        var coinsArray = [Coin]()
         for coinString in cryptoValuesArray {
             aGroup.enter()
             fetchData(url: "https://data.messari.io/api/v1/assets/\(coinString)/metrics") { coin in
-                self.coinsArray.append(coin)
+                coinsArray.append(coin)
                 aGroup.leave()
             }
         }
         aGroup.notify(queue: .main) {
-            let sortedArray = self.coinsArray.sorted { $0.data.marketData.percentChangeUsdLast24Hours < $1.data.marketData.percentChangeUsdLast24Hours
-            }
-            self.coinsArray = sortedArray
-            completion()
+            completion(coinsArray)
         }
     }
 }

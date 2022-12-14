@@ -8,7 +8,7 @@
 import UIKit
 
 class LoginViewController: UIViewController {
-
+    
     let loginTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -22,6 +22,8 @@ class LoginViewController: UIViewController {
         textField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
         return textField
     }()
+    
+    
     
     let passwordTextField: UITextField = {
         let textField = UITextField()
@@ -38,7 +40,7 @@ class LoginViewController: UIViewController {
     }()
     
     let logInButton: UIButton = {
-      let button = UIButton(type: .system)
+        let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = UIFont.systemFont(ofSize: 20)
         button.setTitle("Log in", for: .normal)
@@ -53,9 +55,12 @@ class LoginViewController: UIViewController {
         return button
     }()
     
+    var viewModel: LoginViewModelProtocol!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .lightGray
+        viewModel = LoginViewModel()
         navigationItem.title = "Log In"
         loginTextField.delegate = self
         passwordTextField.delegate = self
@@ -63,6 +68,7 @@ class LoginViewController: UIViewController {
         setConstraints()
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
+        
     }
     
     func updateInterface() {
@@ -71,25 +77,20 @@ class LoginViewController: UIViewController {
         view.addSubview(logInButton)
     }
     func showAlert() {
-            let alert = UIAlertController(title: "Error", message: "Use more than 4 symbols at both TF", preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-            self.present(alert, animated: true)
-        }
-    
+        let alert = UIAlertController(title: "Error", message: "Use more than 4 symbols at both TF", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.present(alert, animated: true)
+    }
     
     @objc func logInTapped(sender: UIButton) {
         
-        if loginTextField.text?.count ?? 1 < 5 && passwordTextField.text?.count ?? 1 < 5 {
+        if viewModel.isLessThanFiveSymbols(logInText: loginTextField.text, passwordText: passwordTextField.text) {
             showAlert()
         } else {
+            viewModel.changeLogInStatus()
             let tableVC = TableViewController()
-            guard let window = self.view.window else {
-                    return
-                }
-            DataManager.shared.isLoggedIn = true
-            UserDefaults.standard.set(DataManager.shared.isLoggedIn, forKey: "loggedIn")
+            guard let window = self.view.window else { return }
             window.switchRootViewController(tableVC)
-            
         }
     }
 }
