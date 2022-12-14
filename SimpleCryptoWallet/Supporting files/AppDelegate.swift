@@ -19,9 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if isLoggedIn {
         
-        let rootNC = UINavigationController(rootViewController: TableViewController())
-        
-        window?.rootViewController = rootNC
+            let rootNC = UINavigationController(rootViewController: TableViewController())
+            window?.rootViewController = rootNC
             
         } else {
             let rootNC = UINavigationController(rootViewController: LoginViewController())
