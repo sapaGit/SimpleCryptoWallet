@@ -11,5 +11,12 @@ class DataManager {
     static let shared = DataManager()
     private init() {}
     
-    var isLoggedIn = false
+    private let userDefaults = UserDefaults()
+    
+    func setLoggedIn(key: String, with status: Bool) {
+        userDefaults.set(status, forKey: key)
+    }
+    func getLoggedIn(key: String) -> Bool {
+        UserDefaults.standard.value(forKey: key) as? Bool ?? false
+    }
 }
