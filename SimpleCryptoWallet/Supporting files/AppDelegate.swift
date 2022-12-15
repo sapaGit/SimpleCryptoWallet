@@ -15,15 +15,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        let isLoggedIn = UserDefaults.standard.value(forKey: "loggedIn") as? Bool ?? false
+        let isLoggedIn = DataManager.shared.getLoggedIn(key: "loggedIn")
         
-        if isLoggedIn {
+        if isLoggedIn { 
             
             let rootNC = UINavigationController(rootViewController: TableViewController())
             window?.rootViewController = rootNC
             
         } else {
-            let rootNC = UINavigationController(rootViewController: LoginViewController())
+            let rootNC = LoginViewController()
             window?.rootViewController = rootNC
         }
         window?.makeKeyAndVisible()

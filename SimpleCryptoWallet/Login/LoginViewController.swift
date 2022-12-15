@@ -23,8 +23,6 @@ class LoginViewController: UIViewController {
         return textField
     }()
     
-    
-    
     let passwordTextField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
@@ -59,8 +57,8 @@ class LoginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .lightGray
         viewModel = LoginViewModel()
+        view.backgroundColor = .lightGray
         navigationItem.title = "Log In"
         loginTextField.delegate = self
         passwordTextField.delegate = self
@@ -68,35 +66,38 @@ class LoginViewController: UIViewController {
         setConstraints()
         let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         view.addGestureRecognizer(tapGesture)
-        
     }
     
-    func updateInterface() {
+    private func updateInterface() {
         view.addSubview(loginTextField)
         view.addSubview(passwordTextField)
         view.addSubview(logInButton)
     }
-    func showAlert() {
-        let alert = UIAlertController(title: "Error", message: "Use more than 4 symbols at both TF", preferredStyle: .alert)
+    private func showAlert() {
+        let alert = UIAlertController(title: "Error", message: "Use at least 4 symbols at both TF", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
         self.present(alert, animated: true)
     }
+    private func switchController() {
+        let tableVC = TableViewController()
+        guard let window = self.view.window else { return }
+        window.switchRootViewController(tableVC)
+    }
     
-    @objc func logInTapped(sender: UIButton) {
+    @objc private func logInTapped(sender: UIButton) {
         
-        if viewModel.isLessThanFiveSymbols(logInText: loginTextField.text, passwordText: passwordTextField.text) {
+        if viewModel.isLessThanFourSymbols(logInText: loginTextField.text,
+                                           passwordText: passwordTextField.text) {
             showAlert()
         } else {
             viewModel.changeLogInStatus()
-            let tableVC = TableViewController()
-            guard let window = self.view.window else { return }
-            window.switchRootViewController(tableVC)
+            switchController()
         }
     }
 }
 
 extension LoginViewController {
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             loginTextField.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -150),
             loginTextField.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -35,8 +35,7 @@ struct MarketData: Codable {
     let realVolumeLast24Hours: Double
     let volumeLast24HoursOverstatementMultiple: Double
     let percentChangeUsdLast24Hours: Double
-    let percentChangeBtcLast24Hours: Double
-    let percentChangeEthLast24Hours: Double
+ 
     
     enum CodingKeys: String, CodingKey {
         case priceUsd = "price_usd"
@@ -44,8 +43,6 @@ struct MarketData: Codable {
         case realVolumeLast24Hours = "real_volume_last_24_hours"
         case volumeLast24HoursOverstatementMultiple = "volume_last_24_hours_overstatement_multiple"
         case percentChangeUsdLast24Hours = "percent_change_usd_last_24_hours"
-        case percentChangeBtcLast24Hours = "percent_change_btc_last_24_hours"
-        case percentChangeEthLast24Hours = "percent_change_eth_last_24_hours"
     }
 }
 

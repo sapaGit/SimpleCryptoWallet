@@ -17,7 +17,7 @@ class DetailViewController: UIViewController {
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .left
         label.numberOfLines = 0
-        label.font = UIFont(name: "Helvetica-Bold", size: 22)
+        label.font = UIFont(name: "Helvetica-Bold", size: 19)
         return label
     }()
     
@@ -29,11 +29,10 @@ class DetailViewController: UIViewController {
         view.addSubview(infoLabel)
         setConstraints()
         
-        
         infoLabel.text = viewModel.detailInfo
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             infoLabel.topAnchor.constraint(equalTo: view.centerYAnchor, constant: -50),
             infoLabel.centerXAnchor.constraint(equalTo: view.centerXAnchor),

@@ -28,6 +28,5 @@ class DetailViewModel: DetailViewModelProtocol {
     required init(coin: Coin) {
         self.coin = coin
     }
-    
-    
+
 }

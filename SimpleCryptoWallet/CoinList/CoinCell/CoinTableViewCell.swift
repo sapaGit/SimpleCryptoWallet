@@ -30,7 +30,7 @@ class CoinTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-    func setCell() {
+    private func setCell() {
         coinName.translatesAutoresizingMaskIntoConstraints = false
         coinName.font = UIFont.boldSystemFont(ofSize: 20)
         coinPrice.translatesAutoresizingMaskIntoConstraints = false
@@ -39,13 +39,13 @@ class CoinTableViewCell: UITableViewCell {
         coinChange.font = UIFont.systemFont(ofSize: 15)
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         contentView.addSubview(coinName)
         contentView.addSubview(coinPrice)
         contentView.addSubview(coinChange)
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         NSLayoutConstraint.activate([
             coinName.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 20),
             

@@ -10,21 +10,17 @@ import Foundation
 protocol LoginViewModelProtocol: AnyObject {
     
     func changeLogInStatus()
-    func logInButtonPressed()
-    func isLessThanFiveSymbols(logInText: String?, passwordText: String?) -> Bool
+    func isLessThanFourSymbols(logInText: String?, passwordText: String?) -> Bool
 }
 
 class LoginViewModel: LoginViewModelProtocol {
     
     
     func changeLogInStatus() {
-        DataManager.shared.isLoggedIn = true
-        UserDefaults.standard.set(DataManager.shared.isLoggedIn, forKey: "loggedIn")
+        DataManager.shared.setLoggedIn(key: "loggedIn", with: true)
     }
-    func logInButtonPressed() {
-        changeLogInStatus()
-    }
-    func isLessThanFiveSymbols(logInText: String?, passwordText: String?) -> Bool {
-        return logInText?.count ?? 1 < 5 || passwordText?.count ?? 1 < 5
+   
+    func isLessThanFourSymbols(logInText: String?, passwordText: String?) -> Bool {
+        return logInText?.count ?? 1 < 4 || passwordText?.count ?? 1 < 4
     }
 }

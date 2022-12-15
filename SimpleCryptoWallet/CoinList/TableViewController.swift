@@ -64,16 +64,18 @@ class TableViewController: UITableViewController {
         self.view.addSubview(indicator)
     }
     
-    @objc func logOutTapped(_ sender: Any){
+    private func switchController() {
         let loginVC = LoginViewController()
-        guard let window = self.view.window else {
-            return
-        }
+        guard let window = self.view.window else { return }
         window.switchRootViewController(loginVC)
-        viewModel.logOutTapped()
     }
     
-    @objc func sortTapped(_ sender: Any){
+    @objc private func logOutTapped(_ sender: Any){
+        viewModel.logOutTapped()
+        switchController()
+    }
+    
+    @objc private func sortTapped(_ sender: Any){
         viewModel.sortTapped()
         tableView.reloadData()
     }
