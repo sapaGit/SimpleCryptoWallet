@@ -10,9 +10,9 @@ import UIKit
 class TableViewController: UITableViewController {
     var indicator = UIActivityIndicatorView()
     
-    private var viewModel: TableViewModelProtocol! {
+    private var viewModel: TableViewModelProtocol? {
         didSet {
-            viewModel.fetchCoins {
+            viewModel?.fetchCoins {
                 self.tableView.reloadData()
                 self.indicator.stopAnimating()
             }
@@ -21,7 +21,6 @@ class TableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         tableView.rowHeight = 90
         setupNavigationBar()
         activityIndicator()
@@ -71,29 +70,30 @@ class TableViewController: UITableViewController {
     }
     
     @objc private func logOutTapped(_ sender: Any){
-        viewModel.logOutTapped()
+        viewModel?.logOutTapped()
         switchController()
     }
     
     @objc private func sortTapped(_ sender: Any){
-        viewModel.sortTapped()
+        viewModel?.sortTapped()
         tableView.reloadData()
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows()
+        return viewModel?.numberOfRows() ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = CoinTableViewCell()
-        cell.viewModel = viewModel.cellViewModel(at: indexPath)
+        cell.viewModel = viewModel?.cellViewModel(at: indexPath)
         
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let detailsViewModel = viewModel.viewModelForSelectedRow(at: indexPath)
+        let detailsViewModel = viewModel?.viewModelForSelectedRow(at: indexPath)
         goToDetailVC(sender: detailsViewModel)
     }
 }

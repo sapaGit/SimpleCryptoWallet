@@ -11,6 +11,7 @@
 		A0708AB32949A702003B35BE /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0708AB22949A702003B35BE /* LoginViewModel.swift */; };
 		A0708AB62949A72C003B35BE /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0708AB52949A72C003B35BE /* TableViewModel.swift */; };
 		A0708ABA2949A759003B35BE /* CoinCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0708AB92949A759003B35BE /* CoinCellViewModel.swift */; };
+		A0708ABE294B015E003B35BE /* Extension + UIWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0708ABD294B015E003B35BE /* Extension + UIWindow.swift */; };
 		A0B9C02929448B8B00A184E5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B9C02829448B8B00A184E5 /* AppDelegate.swift */; };
 		A0B9C02D29448B8B00A184E5 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0B9C02C29448B8B00A184E5 /* LoginViewController.swift */; };
 		A0B9C03229448B8C00A184E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A0B9C03129448B8C00A184E5 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 		A0708AB22949A702003B35BE /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A0708AB52949A72C003B35BE /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		A0708AB92949A759003B35BE /* CoinCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinCellViewModel.swift; sourceTree = "<group>"; };
+		A0708ABD294B015E003B35BE /* Extension + UIWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIWindow.swift"; sourceTree = "<group>"; };
 		A0B9C02529448B8B00A184E5 /* SimpleCryptoWallet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SimpleCryptoWallet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A0B9C02829448B8B00A184E5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A0B9C02C29448B8B00A184E5 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -90,6 +92,14 @@
 			path = CoinCell;
 			sourceTree = "<group>";
 		};
+		A0708ABC294B0141003B35BE /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A0708ABD294B015E003B35BE /* Extension + UIWindow.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		A0B9C01C29448B8B00A184E5 = {
 			isa = PBXGroup;
 			children = (
@@ -112,9 +122,10 @@
 				A0708AB12949A6E5003B35BE /* Login */,
 				A0708AB42949A706003B35BE /* CoinList */,
 				A0708AAD29499F52003B35BE /* CoinDetail */,
-				A0B9C04B2944951300A184E5 /* Supporting files */,
 				A0B9C049294494C400A184E5 /* Model */,
 				A0B9C0482944949A00A184E5 /* Services */,
+				A0708ABC294B0141003B35BE /* Extensions */,
+				A0B9C04B2944951300A184E5 /* Supporting files */,
 				A0B9C04C2944953600A184E5 /* Resources */,
 				A0B9C03629448B8C00A184E5 /* Info.plist */,
 			);
@@ -227,6 +238,7 @@
 				A0B9C04E294495CC00A184E5 /* DetailViewController.swift in Sources */,
 				A0B9C043294493F600A184E5 /* NetworkManager.swift in Sources */,
 				A0708AB32949A702003B35BE /* LoginViewModel.swift in Sources */,
+				A0708ABE294B015E003B35BE /* Extension + UIWindow.swift in Sources */,
 				A0708AB62949A72C003B35BE /* TableViewModel.swift in Sources */,
 				A0B9C041294493B100A184E5 /* Coin.swift in Sources */,
 				A0708AAF29499F7F003B35BE /* DetailViewModel.swift in Sources */,
@@ -382,7 +394,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -409,7 +421,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

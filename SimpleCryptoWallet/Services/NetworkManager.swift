@@ -23,10 +23,8 @@ class NetworkManager {
                 return
             }
             do {
-           
                 let coin = try JSONDecoder().decode(Coin.self, from: data)
                 DispatchQueue.main.async {
-                    print(coin)
                     completion(coin)
                 }
             } catch let error {

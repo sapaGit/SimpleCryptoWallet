@@ -15,7 +15,6 @@ protocol LoginViewModelProtocol: AnyObject {
 
 class LoginViewModel: LoginViewModelProtocol {
     
-    
     func changeLogInStatus() {
         DataManager.shared.setLoggedIn(key: "loggedIn", with: true)
     }

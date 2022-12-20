@@ -17,11 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         let isLoggedIn = DataManager.shared.getLoggedIn(key: "loggedIn")
         
-        if isLoggedIn { 
-            
+        if isLoggedIn {
             let rootNC = UINavigationController(rootViewController: TableViewController())
             window?.rootViewController = rootNC
-            
         } else {
             let rootNC = LoginViewController()
             window?.rootViewController = rootNC
@@ -32,26 +30,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
-extension UIWindow {
-    
-    func switchRootViewController(_ viewController: UIViewController,
-                                  animated: Bool = true,
-                                  duration: TimeInterval = 0.5,
-                                  options: AnimationOptions = .transitionFlipFromRight,
-                                  completion: (() -> Void)? = nil) {
-        guard animated else {
-            rootViewController = UINavigationController(rootViewController: viewController)
-            return
-        }
-        
-        UIView.transition(with: self, duration: duration, options: options, animations: {
-            let oldState = UIView.areAnimationsEnabled
-            UIView.setAnimationsEnabled(false)
-            self.rootViewController = UINavigationController(rootViewController: viewController)
-            UIView.setAnimationsEnabled(oldState)
-        }, completion: { _ in
-            completion?()
-        })
-    }
-    
-}
+
