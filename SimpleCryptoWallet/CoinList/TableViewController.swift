@@ -85,7 +85,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = CoinTableViewCell()
+        let cell = CoinTableViewCell(style: .default, reuseIdentifier: "Cell")
         cell.viewModel = viewModel?.cellViewModel(at: indexPath)
         
         return cell
