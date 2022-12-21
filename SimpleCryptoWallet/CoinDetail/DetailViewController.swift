@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var viewModel: DetailViewModelProtocol!
+    var viewModel: DetailViewModelProtocol?
     
     var infoLabel: UILabel = {
         let label = UILabel()
@@ -29,7 +29,7 @@ class DetailViewController: UIViewController {
         view.addSubview(infoLabel)
         setConstraints()
         
-        infoLabel.text = viewModel.detailInfo
+        infoLabel.text = viewModel?.detailInfo
     }
     
     private func setConstraints() {

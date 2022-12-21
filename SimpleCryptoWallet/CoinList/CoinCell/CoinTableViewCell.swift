@@ -13,11 +13,11 @@ class CoinTableViewCell: UITableViewCell {
     let coinPrice = UILabel()
     let coinChange = UILabel()
     
-    var viewModel: CoinCellViewModelProtocol! {
+    var viewModel: CoinCellViewModelProtocol? {
         didSet {
-            coinName.text = viewModel.coinName
-            coinPrice.text = viewModel.coinPrice
-            coinChange.text = viewModel.coinChange
+            coinName.text = viewModel?.coinName
+            coinPrice.text = viewModel?.coinPrice
+            coinChange.text = viewModel?.coinChange
         }
     }
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
