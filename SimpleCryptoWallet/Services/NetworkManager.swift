@@ -12,7 +12,7 @@ class NetworkManager {
     static let shared = NetworkManager()
     
     private init() {}
-    var cryptoValuesArray = CryptoValues.allCases.map { $0.rawValue }
+    var urlArray = CryptoValues.allCases.map { "https://data.messari.io/api/v1/assets/\($0.rawValue)/metrics" }
     
     func fetchData(url: String, completion: @escaping (_ coin: Coin) -> Void) {
         guard let url = URL(string: url) else { return }
@@ -36,9 +36,9 @@ class NetworkManager {
     func asyncGroup(completion: @escaping (_ coins: [Coin]) -> Void) {
         let aGroup = DispatchGroup()
         var coinsArray = [Coin]()
-        for coinString in cryptoValuesArray {
+        for url in urlArray {
             aGroup.enter()
-            fetchData(url: "https://data.messari.io/api/v1/assets/\(coinString)/metrics") { coin in
+            fetchData(url: url) { coin in
                 coinsArray.append(coin)
                 aGroup.leave()
             }
