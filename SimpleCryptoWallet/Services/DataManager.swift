@@ -7,16 +7,16 @@
 
 import Foundation
 
-class DataManager {
+struct DataManager {
     static let shared = DataManager()
     private init() {}
     
     private let userDefaults = UserDefaults()
     
-    func setLoggedIn(key: String, with status: Bool) {
-        userDefaults.set(status, forKey: key)
+    func setLoggedIn(with status: Bool) {
+        userDefaults.set(status, forKey: "loggedIn")
     }
-    func getLoggedIn(key: String) -> Bool {
-        UserDefaults.standard.value(forKey: key) as? Bool ?? false
+    func getLoggedIn() -> Bool {
+        UserDefaults.standard.value(forKey: "loggedIn") as? Bool ?? false
     }
 }

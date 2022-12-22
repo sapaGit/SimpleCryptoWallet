@@ -16,7 +16,7 @@ protocol LoginViewModelProtocol: AnyObject {
 class LoginViewModel: LoginViewModelProtocol {
     
     func changeLogInStatus() {
-        DataManager.shared.setLoggedIn(key: "loggedIn", with: true)
+        DataManager.shared.setLoggedIn(with: true)
     }
    
     func isLessThanFourSymbols(logInText: String?, passwordText: String?) -> Bool {

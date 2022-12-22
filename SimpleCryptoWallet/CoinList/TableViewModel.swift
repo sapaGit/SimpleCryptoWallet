@@ -36,7 +36,7 @@ class TableViewModel: TableViewModelProtocol {
     
     func logOutTapped() {
         coins = []
-        DataManager.shared.setLoggedIn(key: "loggedIn", with: false)
+        DataManager.shared.setLoggedIn(with: false)
     }
     
     func fetchCoins(completion: @escaping () -> Void) {
