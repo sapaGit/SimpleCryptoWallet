@@ -32,6 +32,4 @@ class CoinCellViewModel: CoinCellViewModelProtocol {
     required init(coin: Coin) {
         self.coin = coin
     }
-    
-    
 }
